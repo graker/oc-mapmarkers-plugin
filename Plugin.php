@@ -18,9 +18,9 @@ class Plugin extends PluginBase
     {
         return [
             'name'        => 'MapMarkers',
-            'description' => 'No description provided yet...',
+            'description' => 'Google map with multiple markers',
             'author'      => 'Graker',
-            'icon'        => 'icon-leaf'
+            'icon'        => 'icon-map-marker'
         ];
     }
 
@@ -29,12 +29,9 @@ class Plugin extends PluginBase
      *
      * @return array
      */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
+    public function registerComponents() {
         return [
-            'Graker\MapMarkers\Components\MyComponent' => 'myComponent',
+            'Graker\MapMarkers\Components\Map' => 'markersMap',
         ];
     }
 
@@ -45,14 +42,12 @@ class Plugin extends PluginBase
      */
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
-        return [
-            'graker.mapmarkers.some_permission' => [
-                'tab' => 'MapMarkers',
-                'label' => 'Some permission'
-            ],
-        ];
+      return [
+        'graker.mapmarkers.manage_markers' => [
+          'label' => 'Manage map markers',
+          'tab' => 'Map Markers',
+        ],
+      ];
     }
 
     /**

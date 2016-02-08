@@ -1,6 +1,7 @@
 <?php namespace Graker\MapMarkers\Components;
 
 use Cms\Classes\ComponentBase;
+use Graker\MapMarkers\Models\Marker;
 
 class Map extends ComponentBase
 {
@@ -8,8 +9,8 @@ class Map extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'Map Component',
-            'description' => 'No description provided yet...'
+            'name'        => 'Map',
+            'description' => 'Google map with markers'
         ];
     }
 
