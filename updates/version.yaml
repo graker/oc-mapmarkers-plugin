@@ -1,1 +1,5 @@
 1.0.1: First version of MapMarkers
+    - Initialize plugin
+    - create_markers_table.php
+    - create_album_markers_table.php
+    - create_post_markers_table.php
