@@ -3,6 +3,31 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
-        disabled: true
+    title:
+        label: Title
+        span: auto
+        placeholder: Marker title
+
+    description:
+            label: Description
+            type: richeditor
+            size: small
+            span: full
+
+    image:
+        label: Photo
+        type: fileupload
+        mode: image
+        imageWidth: 320
+        imageHeight: 240
+        span: left
+
+    latitude:
+        label: Latitude
+        type: number
+        span: right
+
+    longitude:
+        label: Longitude
+        type: number
+        span: right

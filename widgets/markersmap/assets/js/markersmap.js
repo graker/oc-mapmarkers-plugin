@@ -10,6 +10,7 @@ function markersMapInit() {
     zoom: 2
   });
 
+  //load markers
   $(this).request('onMarkersLoad', {
     success: markersMapAddMarkers
   });
@@ -18,12 +19,20 @@ function markersMapInit() {
 
 /**
  * Adds markers to map
+ * Markers are expected to be a JSON in data.result
  */
-function markersMapAddMarkers(markers) {
-  //cycle through markers
-  for (var i=0; i < (markers.length - 1); i++) {
+function markersMapAddMarkers(data) {
+  if (data.result == undefined) {
+    return ;
+  }
+
+  var markers = $.parseJSON(data.result);
+  for (var i=0; i < markers.length; i++) {
     var marker = new google.maps.Marker({
-      position: {lat: markers[i].latitude, lng: markers[i].longitude},
+      position: {
+        lat: parseFloat(markers[i].latitude),
+        lng: parseFloat(markers[i].longitude)
+      },
       map: markersMap,
       title: markers[i].title
     });

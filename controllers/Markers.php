@@ -43,7 +43,8 @@ class Markers extends Controller
    * @return Marker[]
    */
   public function onMarkersLoad() {
-    return Marker::all();
+    $markers = Marker::all();
+    return $markers->toJson();
   }
 
 }
