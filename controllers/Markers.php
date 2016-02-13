@@ -82,7 +82,7 @@ class Markers extends Controller
    * AJAX callback
    * Returns array of all markers in the system
    *
-   * @return Marker[]
+   * @return string json
    */
   public function onMarkersLoad() {
     $markers = Marker::all();
