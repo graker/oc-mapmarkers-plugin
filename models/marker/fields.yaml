@@ -44,3 +44,20 @@ fields:
         type: number
         span: left
         required: true
+
+    relations_section:
+            label: Attached content
+            type: section
+            comment: Select content to attach to this marker
+
+    posts:
+        label: Blog posts
+        type: relation
+        nameFrom: title
+        span: left
+
+    albums:
+        label: Photo albums
+        type: relation
+        nameFrom: title
+        span: right
