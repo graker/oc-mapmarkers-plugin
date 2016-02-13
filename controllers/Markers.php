@@ -37,6 +37,48 @@ class Markers extends Controller
 
   /**
    *
+   * Overriding create() method to add javascript for coordinates
+   *
+   * @param string $context
+   */
+  public function create($context = '') {
+    $this->addMapJS();
+    return $this->asExtension('FormController')->create($context);
+  }
+
+
+  /**
+   *
+   * Overriding update() method to add javascript for coordinates
+   *
+   * @param $recordId
+   * @param string $context
+   * @return mixed
+   */
+  public function update($recordId, $context = '') {
+    $this->addMapJS();
+    return $this->asExtension('FormController')->update($recordId, $context);
+  }
+
+
+  /**
+   * Adds scripts needed for map coords functionality
+   */
+  protected function addMapJS() {
+    //add local map init script and google map script
+    $this->addJs('/plugins/graker/mapmarkers/controllers/markers/markercoords.js');
+    $this->addJs(
+      'https://maps.googleapis.com/maps/api/js?callback=markerCoordsMapInit',
+      [
+        'async',
+        'defer',
+      ]
+    );
+  }
+
+
+  /**
+   *
    * AJAX callback
    * Returns array of all markers in the system
    *

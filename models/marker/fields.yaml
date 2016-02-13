@@ -5,14 +5,14 @@
 fields:
     title:
         label: Title
-        span: auto
+        span: full
         placeholder: Marker title
 
     description:
             label: Description
             type: richeditor
-            size: small
-            span: full
+            size: large
+            span: right
 
     image:
         label: Photo
@@ -22,12 +22,24 @@ fields:
         imageHeight: 240
         span: left
 
+    coordinates_section:
+        label: Coordinates
+        type: section
+        comment: Set up marker coordinates. Doubleclick on the map to set up or change marker's location.
+
+    coordinates:
+        type: partial
+        path: $/graker/mapmarkers/controllers/markers/_markercoords.htm
+        span: right
+
     latitude:
         label: Latitude
         type: number
-        span: right
+        span: left
+        required: true
 
     longitude:
         label: Longitude
         type: number
-        span: right
+        span: left
+        required: true

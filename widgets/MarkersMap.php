@@ -49,7 +49,8 @@ class MarkersMap extends WidgetBase {
       [
         'async',
         'defer',
-      ]);
+      ]
+    );
   }
 
 }
