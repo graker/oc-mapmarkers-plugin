@@ -45,11 +45,11 @@ class Marker extends Model
   public $belongsToMany = [
     'posts' => [
       'RainLab\Blog\Models\Post',
-      'graker_mapmarkers_post_markers',
+      'table' => 'graker_mapmarkers_post_markers',
     ],
     'albums' => [
       'Graker\PhotoAlbums\Models\Album',
-      'graker_mapmarkers_album_markers',
+      'table' => 'graker_mapmarkers_album_markers',
     ],
   ];
 
