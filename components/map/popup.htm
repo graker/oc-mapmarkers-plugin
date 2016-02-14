@@ -1,22 +1,43 @@
 <div class="map-popup row">
-    <div class="col-xs-12">
-        <h4>{{ marker.title }}</h4>
-    </div>
-    <div class="row">
-        {% if marker.image %}
-            <div class="col-md-6 col-lg-4">
-                <img
+    {% if marker.image %}
+        <div class="col-md-6 col-lg-4">
+            <img
                     data-src="{{ marker.image.thumb }}"
                     src="{{ marker.image.thumb }}"
                     style="max-width: 100%" />
-            </div>
-            <div class="col-md-6 col-lg-8">
-                {{ marker.description|raw }}
-             </div>
-        {% else %}
+        </div>
+        <div class="col-md-6 col-lg-8">
+            <h4>{{ marker.title }}</h4>
+            {{ marker.description|raw }}
+        </div>
+    {% else %}
+        <div class="col-xs-12">
+            <h4>{{ marker.title }}</h4>
+            {{ marker.description|raw }}
+        </div>
+    {% endif %}
+    {% if marker.posts is not empty %}
+        <div class="col-xs-12">
+            <hr />
+            <h5>Blog posts</h5>
+        </div>
+        {% for post in marker.posts %}
             <div class="col-xs-12">
-                {{ marker.description|raw }}
+                <span class="post-date">{{ post.published_at|date('M d, Y') }}</span>
+                <strong><a href="{{ post.url }}">{{ post.title }}</a></strong>
             </div>
-        {% endif %}
-    </div>
+        {% endfor %}
+    {% endif %}
+    {% if marker.albums is not empty %}
+        <div class="col-xs-12">
+            <hr />
+            <h5>Photo albums</h5>
+        </div>
+        {% for album in marker.albums %}
+            <div class="col-xs-12">
+                <span class="post-date">{{ album.created_at|date('M d, Y') }}</span>
+                <strong><a href="{{ album.url }}">{{ album.title }}</a></strong>
+            </div>
+        {% endfor %}
+    {% endif %}
 </div>

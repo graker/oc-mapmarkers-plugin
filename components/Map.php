@@ -1,5 +1,6 @@
 <?php namespace Graker\MapMarkers\Components;
 
+use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Graker\MapMarkers\Models\Marker;
 use Request;
@@ -22,7 +23,42 @@ class Map extends ComponentBase
    * @return array
    */
   public function defineProperties() {
-    return [];
+    return [
+      'postPage' => [
+        'title'       => 'Blog post page',
+        'description' => 'Page used to display blog posts',
+        'type'        => 'dropdown',
+        'default'     => 'blog/post',
+      ],
+      'albumPage' => [
+        'title'       => 'Album page',
+        'description' => 'Page used to display photo albums',
+        'type'        => 'dropdown',
+        'default'     => 'photoalbums/album',
+      ],
+    ];
+  }
+
+
+  /**
+   *
+   * Returns pages list for album page select box setting
+   *
+   * @return mixed
+   */
+  public function getAlbumPageOptions() {
+    return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+  }
+
+
+  /**
+   *
+   * Returns pages list for album page select box setting
+   *
+   * @return mixed
+   */
+  public function getPostPageOptions() {
+    return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
   }
 
 
@@ -74,6 +110,18 @@ class Map extends ComponentBase
 
     if ($model->image) {
       $model->image->thumb = $model->image->getThumb(120, 120, ['mode' => 'auto']);
+    }
+
+    //setup urls for posts and albums
+    if ($model->posts) {
+      foreach ($model->posts as $post) {
+        $post->setUrl($this->property('postPage'), $this->controller);
+      }
+    }
+    if ($model->albums) {
+      foreach ($model->albums as $album) {
+        $album->setUrl($this->property('albumPage'), $this->controller);
+      }
     }
 
     return $this->renderPartial('::popup', ['marker' => $model]);
