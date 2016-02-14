@@ -71,6 +71,11 @@ class Map extends ComponentBase
   public function onMarkerClicked() {
     $id = Request::input('marker_id');
     $model = Marker::where('id', $id)->with('posts')->with('albums')->with('image')->first();
+
+    if ($model->image) {
+      $model->image->thumb = $model->image->getThumb(120, 120, ['mode' => 'auto']);
+    }
+
     return $this->renderPartial('::popup', ['marker' => $model]);
   }
 
