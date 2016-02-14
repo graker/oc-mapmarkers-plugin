@@ -2,6 +2,7 @@
 
 use Cms\Classes\ComponentBase;
 use Graker\MapMarkers\Models\Marker;
+use Request;
 
 class Map extends ComponentBase
 {
@@ -56,8 +57,21 @@ class Map extends ComponentBase
    * @return string json
    */
   public function onMarkersLoad() {
-    $markers = Marker::with('posts')->with('albums')->with('image')->get();
+    $markers = Marker::all();
     return $markers->toJson();
+  }
+
+
+  /**
+   *
+   * Renders info box in response to marker's click
+   *
+   * @return string
+   */
+  public function onMarkerClicked() {
+    $id = Request::input('marker_id');
+    $model = Marker::where('id', $id)->with('posts')->with('albums')->with('image')->first();
+    return $this->renderPartial('::popup', ['marker' => $model]);
   }
 
 }

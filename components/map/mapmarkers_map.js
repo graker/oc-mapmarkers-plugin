@@ -2,9 +2,10 @@
  * Initializes map
  */
 var mapComponentMap;
+var mapComponentInfoBox;
+
 function mapComponentInit() {
   mapComponentMap = new google.maps.Map(document.getElementById('mapcomponent'), {
-    //TODO setup center from settings
     center: {lat: 20, lng: 0},
     zoom: 2
   });
@@ -12,6 +13,11 @@ function mapComponentInit() {
   //load markers
   $(this).request('onMarkersLoad', {
     success: mapComponentAddMarkers
+  });
+
+  //init infobox
+  mapComponentInfoBox = new google.maps.InfoWindow({
+    content: ''
   });
 }
 
@@ -34,6 +40,18 @@ function mapComponentAddMarkers(data) {
       },
       map: mapComponentMap,
       title: markers[i].title
+    });
+    marker.marker_id = markers[i].id;
+    //bind marker click to show info box
+    marker.addListener('click', function () {
+      var clickedMarker = this;
+      $(this).request('onMarkerClicked', {
+        data: {marker_id: clickedMarker.marker_id},
+        success: function (data) {
+          mapComponentInfoBox.setContent(data.result);
+          mapComponentInfoBox.open(mapComponentMap, clickedMarker);
+        }
+      });
     });
   }
 }
