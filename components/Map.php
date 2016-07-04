@@ -3,6 +3,7 @@
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Graker\MapMarkers\Models\Marker;
+use Illuminate\Database\Eloquent\Collection;
 use Request;
 
 class Map extends ComponentBase
@@ -35,6 +36,12 @@ class Map extends ComponentBase
         'description' => 'Page used to display photo albums',
         'type'        => 'dropdown',
         'default'     => 'photoalbums/album',
+      ],
+      'mapMarker' => [
+        'title'       => 'Map Marker',
+        'description' => 'Path to map marker image',
+        'default'     => '',
+        'type'        => 'string'
       ],
     ];
   }
@@ -88,13 +95,27 @@ class Map extends ComponentBase
 
   /**
    *
-   * Returns JSON with all site markers (including attached image, referenced albums and posts)
+   * Returns JSON with all data needed:
+   *  - .settings - global map settings (marker icon)
+   *  - .markers - markers data: title and coordinates
    *
    * @return string json
    */
-  public function onMarkersLoad() {
+  public function onDataLoad() {
+    $data = array();
+    $data['settings']['image'] = $this->property('mapMarker');
+    $markers = $this->loadMarkers();
+    $data['markers'] = $markers->toArray();
+    return json_encode($data);
+  }
+
+
+  /**
+   * @return Collection of all markers
+   */
+  protected function loadMarkers() {
     $markers = Marker::all();
-    return $markers->toJson();
+    return $markers;
   }
 
 

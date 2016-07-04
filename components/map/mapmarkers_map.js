@@ -11,7 +11,7 @@ function mapComponentInit() {
   });
 
   //load markers
-  $(this).request('onMarkersLoad', {
+  $(this).request('onDataLoad', {
     success: mapComponentAddMarkers
   });
 
@@ -31,17 +31,18 @@ function mapComponentAddMarkers(data) {
     return ;
   }
 
-  var markers = $.parseJSON(data.result);
-  for (var i=0; i < markers.length; i++) {
+  var loadedData = $.parseJSON(data.result);
+  for (var i=0; i < loadedData.markers.length; i++) {
     var marker = new google.maps.Marker({
       position: {
-        lat: parseFloat(markers[i].latitude),
-        lng: parseFloat(markers[i].longitude)
+        lat: parseFloat(loadedData.markers[i].latitude),
+        lng: parseFloat(loadedData.markers[i].longitude)
       },
       map: mapComponentMap,
-      title: markers[i].title
+      title: loadedData.markers[i].title,
+      icon: loadedData.settings.image
     });
-    marker.marker_id = markers[i].id;
+    marker.marker_id = loadedData.markers[i].id;
     //bind marker click to show info box
     marker.addListener('click', function () {
       var clickedMarker = this;
