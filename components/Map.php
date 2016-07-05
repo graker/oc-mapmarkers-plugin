@@ -43,6 +43,12 @@ class Map extends ComponentBase
         'type'        => 'string',
         'default'     => 2,
       ],
+      'apiKey' => [
+        'title'       => 'API key',
+        'description' => 'Google API key (optional)',
+        'type'        => 'string',
+        'default'     => '',
+      ],
       'mapMarker' => [
         'title'       => 'Map Marker',
         'description' => 'Path to map marker image',
@@ -93,8 +99,11 @@ class Map extends ComponentBase
   protected function addMapJS() {
     //add local map init script and google map script
     $this->addJs('/plugins/graker/mapmarkers/components/map/mapmarkers_map.js');
+
+    //add google map js with or without api key
+    $key = ($this->property('apiKey')) ? 'key=' . $this->property('apiKey') . '&' : '';
     $this->addJs(
-      'https://maps.googleapis.com/maps/api/js?callback=mapComponentInit',
+      'https://maps.googleapis.com/maps/api/js?' . $key . 'callback=mapComponentInit',
       [
         'async',
         'defer',
