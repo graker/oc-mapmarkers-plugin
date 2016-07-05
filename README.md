@@ -33,7 +33,6 @@ For each marker you can display a title, image thumbnail, description and links 
 
 Current roadmap is to:
 
-* create a widget more complex to add references (posts and albums) since checkboxes from relation widget won't be enough when having 1000+ of posts
 * move map component styles to CSS assets rather than having them in partials
 * add pagination and thumb settings to the Markers List component 
 * make more use of attached posts and albums

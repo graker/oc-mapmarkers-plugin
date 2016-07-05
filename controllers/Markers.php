@@ -38,11 +38,13 @@ class Markers extends Controller
   /**
    *
    * Overriding create() method to add javascript for coordinates
+   * and javascript for checkbox searches
    *
    * @param string $context
    */
   public function create($context = '') {
     $this->addMapJS();
+    $this->addJs('/plugins/graker/mapmarkers/controllers/markers/checkboxlist-searchable.js');
     return $this->asExtension('FormController')->create($context);
   }
 
@@ -50,6 +52,7 @@ class Markers extends Controller
   /**
    *
    * Overriding update() method to add javascript for coordinates
+   * and javascript for checkbox searches
    *
    * @param $recordId
    * @param string $context
@@ -57,6 +60,7 @@ class Markers extends Controller
    */
   public function update($recordId, $context = '') {
     $this->addMapJS();
+    $this->addJs('/plugins/graker/mapmarkers/controllers/markers/checkboxlist-searchable.js');
     return $this->asExtension('FormController')->update($recordId, $context);
   }
 
