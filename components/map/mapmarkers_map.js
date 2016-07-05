@@ -5,19 +5,9 @@ var mapComponentMap;
 var mapComponentInfoBox;
 
 function mapComponentInit() {
-  mapComponentMap = new google.maps.Map(document.getElementById('mapcomponent'), {
-    center: {lat: 20, lng: 0},
-    zoom: 2
-  });
-
-  //load markers
+  //load settings and markers
   $(this).request('onDataLoad', {
     success: mapComponentAddMarkers
-  });
-
-  //init infobox
-  mapComponentInfoBox = new google.maps.InfoWindow({
-    content: ''
   });
 }
 
@@ -30,8 +20,22 @@ function mapComponentAddMarkers(data) {
   if (data.result == undefined) {
     return ;
   }
-
   var loadedData = $.parseJSON(data.result);
+
+  // init map with settings
+  mapComponentMap = new google.maps.Map(document.getElementById('mapcomponent'), {
+    center: {
+      lat: parseFloat(loadedData.settings.center.lat),
+      lng: parseFloat(loadedData.settings.center.lng)
+    },
+    zoom: parseInt(loadedData.settings.zoom)
+  });
+
+  //init infobox
+  mapComponentInfoBox = new google.maps.InfoWindow({
+    content: ''
+  });
+
   for (var i=0; i < loadedData.markers.length; i++) {
     var marker = new google.maps.Marker({
       position: {

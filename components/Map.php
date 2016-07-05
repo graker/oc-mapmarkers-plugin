@@ -25,6 +25,30 @@ class Map extends ComponentBase
    */
   public function defineProperties() {
     return [
+      'centerLat' => [
+        'title'       => 'Center latitude',
+        'description' => 'Latitude of map center (float)',
+        'type'        => 'string',
+        'default'     => 0.0,
+      ],
+      'centerLng' => [
+        'title'       => 'Center longitude',
+        'description' => 'Longitude of map center (float)',
+        'type'        => 'string',
+        'default'     => 0.0,
+      ],
+      'zoom' => [
+        'title'       => 'Default zoom',
+        'description' => 'Map zoom by default',
+        'type'        => 'string',
+        'default'     => 2,
+      ],
+      'mapMarker' => [
+        'title'       => 'Map Marker',
+        'description' => 'Path to map marker image',
+        'default'     => '',
+        'type'        => 'string'
+      ],
       'postPage' => [
         'title'       => 'Blog post page',
         'description' => 'Page used to display blog posts',
@@ -36,12 +60,6 @@ class Map extends ComponentBase
         'description' => 'Page used to display photo albums',
         'type'        => 'dropdown',
         'default'     => 'photoalbums/album',
-      ],
-      'mapMarker' => [
-        'title'       => 'Map Marker',
-        'description' => 'Path to map marker image',
-        'default'     => '',
-        'type'        => 'string'
       ],
     ];
   }
@@ -103,7 +121,7 @@ class Map extends ComponentBase
    */
   public function onDataLoad() {
     $data = array();
-    $data['settings']['image'] = $this->property('mapMarker');
+    $data['settings'] = $this->createSettingsArray();
     $markers = $this->loadMarkers();
     $data['markers'] = $markers->toArray();
     return json_encode($data);
@@ -116,6 +134,24 @@ class Map extends ComponentBase
   protected function loadMarkers() {
     $markers = Marker::all();
     return $markers;
+  }
+
+
+  /**
+   *
+   * Creates array of settings to pass to JS as JSON
+   *
+   * @return array
+   */
+  protected function createSettingsArray() {
+    $settings = array();
+    $settings['image'] = $this->property('mapMarker');
+    $settings['zoom'] = $this->property('zoom');
+    $settings['center'] = [
+      'lat' => $this->property('centerLat'),
+      'lng' => $this->property('centerLng'),
+    ];
+    return $settings;
   }
 
 
