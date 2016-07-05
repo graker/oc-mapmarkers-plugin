@@ -1,0 +1,7 @@
+<div class="markers-list">
+    {% for marker in __SELF__.markers %}
+        {% partial '@marker' marker=marker %}
+    {% else %}
+        <div class="no-data">You have not created any markers yet</div>
+    {% endfor %}
+</div>

@@ -33,6 +33,7 @@ class Plugin extends PluginBase
   public function registerComponents() {
     return [
       'Graker\MapMarkers\Components\Map' => 'markersMap',
+      'Graker\MapMarkers\Components\MarkersList' => 'markersList',
     ];
   }
 
