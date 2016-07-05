@@ -3,19 +3,38 @@
 This OctoberCMS plugin allows user to set up and display multiple markers on Google Map.
 
 Aside coordinates, each marker can have a title, attached image and optional links to other content.
-Links to blog posts from RainLab.Blog and albums from Graker.PhotoAlbums are supported.
+At the moment, links to blog posts from [RainLab.Blog](https://octobercms.com/plugin/rainlab-blog) and albums from [Graker.PhotoAlbums](https://github.com/graker/photoalbums) are supported.
 
-At the moment following basic functionality is working:
- - adding markers
- - setting marker coordinates by clicking on the map
- - attaching images, blog posts and photo albums to markers
- - markers list and map with markers in the backend
- - map component to output map with markers in the frontend
- - displaying popup (info windows) when a marker is clicked
+## Usage
 
-Current roadmap is:
- - to create a widget more complex to add references (posts and albums) since checkboxes from relation widget won't be enough when having 1000+ of posts
- - to move map component styles to CSS assets rather than having them in partials
- - to add more map component settings like the map center and zoom
- - to add the ability to use Google API key if it exists
- - to create a form widget to enter latitude and longitude more elegantly (see the formwidget branch)
+### Map component
+
+To use the plugin, install it as usual, go to graker/mapmarkers at Backend, create some markers and optionally link them to blog posts and photo albums.
+Then add Map component to a page. The map will be displayed with all the markers you created.
+For this component, you can set:
+
+* latitude and longitude for default map center
+* default map zoom
+* custom map marker icon (full path to file)
+* post and album pages (needed if you want to attach posts and albums to markers)
+
+Attaching posts and albums to markers is totally optional. If you have no need for it, you still can create markers with a title, image and description.
+
+After setting up a component, look at partials at `components/map` in plugin directory. 
+As you can see, beside `default.htm` (map container markup), there is `popup.htm` partial. 
+It is used to render popups when markers on the map are being clicked. Override this partial's markup for your needs.
+
+### Markers List component
+
+This component can be used to display markers as plain content (like posts), for example, under the map. 
+For each marker you can display a title, image thumbnail, description and links to attached blog posts and photo albums. 
+
+## Roadmap
+
+Current roadmap is to:
+
+* create a widget more complex to add references (posts and albums) since checkboxes from relation widget won't be enough when having 1000+ of posts
+* move map component styles to CSS assets rather than having them in partials
+* add pagination and thumb settings to the Markers List component 
+* make more use of attached posts and albums
+* create a form widget to enter latitude and longitude more elegantly (see the formwidget branch)
