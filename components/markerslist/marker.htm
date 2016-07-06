@@ -1,15 +1,21 @@
 <div class="marker">
     {% if marker.image %}
-        <img
-            data-src="{{ marker.image.thumb }}"
-            src="{{ marker.image.thumb }}"
-            style="max-width: 100%" />
-        <h4>{{ marker.title }}</h4>
-        {{ marker.description|raw }}
+        {% if marker.singleUrl %}
+            <a href="{{ marker.singleUrl }}">
+                <img data-src="{{ marker.image.thumb }}" src="{{ marker.image.thumb }}" style="max-width: 100%" />
+            </a>
+        {% else %}
+            <img data-src="{{ marker.image.thumb }}" src="{{ marker.image.thumb }}" style="max-width: 100%" />
+        {% endif %}
+    {% endif %}
+    {% if marker.singleUrl %}
+        <a href="{{ marker.singleUrl }}">
+            <h4>{{ marker.title }}</h4>
+        </a>
     {% else %}
         <h4>{{ marker.title }}</h4>
-        {{ marker.description|raw }}
     {% endif %}
+    {{ marker.description|raw }}
     {% if marker.posts is not empty %}
         <hr />
         <h5>Blog posts</h5>

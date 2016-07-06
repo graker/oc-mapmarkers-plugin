@@ -218,7 +218,34 @@ class Map extends ComponentBase
       }
     }
 
+    $model->singleUrl = $this->getSingleUrl($model);
+
     return $this->renderPartial('::popup', ['marker' => $model]);
+  }
+
+
+  /**
+   *
+   * Returns single url for a marker given, if it has exactly one attachment
+   * or returns '' if there more than one attachment or none at all
+   *
+   * @param \Graker\MapMarkers\Models\Marker $marker
+   * @return string
+   */
+  protected function getSingleUrl(Marker $marker) {
+    $url = '';
+
+    $posts_count = count($marker->posts);
+    $markers_count = count($marker->albums);
+    if (($posts_count + $markers_count) == 1) {
+      if ($posts_count) {
+        $url = $marker->posts->first()->url;
+      } else {
+        $url = $marker->albums->first()->url;
+      }
+    }
+
+    return $url;
   }
 
 }

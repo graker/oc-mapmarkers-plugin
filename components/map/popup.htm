@@ -1,18 +1,33 @@
 <div class="map-popup row">
     {% if marker.image %}
         <div class="col-md-6 col-lg-4">
-            <img
-                    data-src="{{ marker.image.thumb }}"
-                    src="{{ marker.image.thumb }}"
-                    style="max-width: 100%" />
+            {% if marker.singleUrl %}
+                <a href="{{ marker.singleUrl }}">
+                    <img data-src="{{ marker.image.thumb }}" src="{{ marker.image.thumb }}" style="max-width: 100%" />
+                </a>
+            {% else %}
+                <img data-src="{{ marker.image.thumb }}" src="{{ marker.image.thumb }}" style="max-width: 100%" />
+            {% endif %}
         </div>
         <div class="col-md-6 col-lg-8">
-            <h4>{{ marker.title }}</h4>
+            {% if marker.singleUrl %}
+                <a href="{{ marker.singleUrl }}">
+                    <h4>{{ marker.title }}</h4>
+                </a>
+            {% else %}
+                <h4>{{ marker.title }}</h4>
+            {% endif %}
             {{ marker.description|raw }}
         </div>
     {% else %}
         <div class="col-xs-12">
-            <h4>{{ marker.title }}</h4>
+            {% if marker.singleUrl %}
+                <a href="{{ marker.singleUrl }}">
+                    <h4>{{ marker.title }}</h4>
+                </a>
+            {% else %}
+                <h4>{{ marker.title }}</h4>
+            {% endif %}
             {{ marker.description|raw }}
         </div>
     {% endif %}
