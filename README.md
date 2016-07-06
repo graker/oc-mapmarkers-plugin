@@ -33,7 +33,6 @@ For each marker you can display a title, image thumbnail, description and links 
 
 Current roadmap is to:
 
-* move map component styles to CSS assets rather than having them in partials
+* move map component styles to CSS assets
 * add pagination and thumb settings to the Markers List component 
 * make more use of attached posts and albums
-* create a form widget to enter latitude and longitude more elegantly (see the formwidget branch)
