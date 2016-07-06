@@ -58,4 +58,54 @@ class Marker extends Model
     'image' => ['System\Models\File'],
   ];
 
+
+  /**
+   *
+   * Generates thumbnail for the marker by picking one of existing thumbs in following priority:
+   *  1) Image attached directly to marker
+   *  2) Featured image of attached post
+   *  3) Latest photo in attached album
+   *
+   * @param array of thumb options (width, height, mode)
+   * @return string
+   */
+  public function getMarkerThumb($options) {
+    // check attached image
+    if ($this->image) {
+      return $this->image->getThumb(
+        $options['width'],
+        $options['height'],
+        ['mode' => $options['mode']]
+      );
+    }
+
+    // check posts
+    if ($this->posts) {
+      foreach ($this->posts as $post) {
+        if ($featured_image = $post->featured_images->first()) {
+          return $featured_image->getThumb(
+            $options['width'],
+            $options['height'],
+            ['mode' => $options['mode']]
+          );
+        }
+      }
+    }
+
+    // check albums
+    if ($this->albums) {
+      foreach ($this->albums as $album) {
+        if ($album->latestPhoto && ($photo = $album->latestPhoto->image)) {
+          return $photo->getThumb(
+            $options['width'],
+            $options['height'],
+            ['mode' => $options['mode']]
+          );
+        }
+      }
+    }
+
+    return '';
+  }
+
 }

@@ -176,7 +176,9 @@ class MarkersList extends ComponentBase
     $markers = Marker::orderBy('created_at', 'desc')
       ->with('image')
       ->with('posts')
-      ->with('albums')
+      ->with(['albums' => function ($query) {
+        $query->with('latestPhoto');
+      }])
       ->paginate($this->property('markersOnPage'), $this->currentPage);
 
     return $this->prepareMarkers($markers);
@@ -194,13 +196,11 @@ class MarkersList extends ComponentBase
    */
   protected function prepareMarkers($markers) {
     foreach ($markers as $marker) {
-      if ($marker->image) {
-        $marker->image->thumb = $marker->image->getThumb(
-          $this->property('thumbWidth'),
-          $this->property('thumbHeight'),
-          ['mode' => $this->property('thumbMode')]
-        );
-      }
+      $marker->thumb = $marker->getMarkerThumb([
+        'width' => $this->property('thumbWidth'),
+        'height' => $this->property('thumbHeight'),
+        'mode' => $this->property('thumbMode'),
+      ]);
 
       //setup urls for posts and albums
       if ($marker->posts) {

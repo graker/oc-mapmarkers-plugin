@@ -196,15 +196,19 @@ class Map extends ComponentBase
    */
   public function onMarkerClicked() {
     $id = Request::input('marker_id');
-    $model = Marker::where('id', $id)->with('posts')->with('albums')->with('image')->first();
+    $model = Marker::where('id', $id)
+      ->with('posts')
+      ->with(['albums' => function ($query) {
+        $query->with('latestPhoto');
+      }])
+      ->with('image')
+      ->first();
 
-    if ($model->image) {
-      $model->image->thumb = $model->image->getThumb(
-        $this->property('thumbWidth'),
-        $this->property('thumbHeight'),
-        ['mode' => $this->property('thumbMode')]
-      );
-    }
+    $model->thumb = $model->getMarkerThumb([
+      'width' => $this->property('thumbWidth'),
+      'height' => $this->property('thumbHeight'),
+      'mode' => $this->property('thumbMode'),
+    ]);
 
     //setup urls for posts and albums
     if ($model->posts) {

@@ -1,11 +1,11 @@
 <div class="marker">
-    {% if marker.image %}
+    {% if marker.thumb %}
         {% if marker.singleUrl %}
             <a href="{{ marker.singleUrl }}">
-                <img data-src="{{ marker.image.thumb }}" src="{{ marker.image.thumb }}" style="max-width: 100%" />
+                <img data-src="{{ marker.thumb }}" src="{{ marker.thumb }}" style="max-width: 100%" />
             </a>
         {% else %}
-            <img data-src="{{ marker.image.thumb }}" src="{{ marker.image.thumb }}" style="max-width: 100%" />
+            <img data-src="{{ marker.thumb }}" src="{{ marker.thumb }}" style="max-width: 100%" />
         {% endif %}
     {% endif %}
     {% if marker.singleUrl %}
