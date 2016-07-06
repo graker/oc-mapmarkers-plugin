@@ -4,9 +4,28 @@ use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Graker\MapMarkers\Models\Marker;
 use Illuminate\Database\Eloquent\Collection;
+use Redirect;
 
 class MarkersList extends ComponentBase
 {
+
+  /**
+   * @var Collection of markers to display
+   */
+  public $markers;
+
+
+  /**
+   * @var int current page number
+   */
+  public $currentPage;
+
+
+  /**
+   * @var int last page number
+   */
+  public $lastPage;
+
 
   public function componentDetails()
   {
@@ -19,6 +38,15 @@ class MarkersList extends ComponentBase
   public function defineProperties()
   {
     return [
+      'markersOnPage' => [
+        'title'             => 'Markers on page',
+        'description'       => 'Amount of markers on one page (to use in pagination)',
+        'default'           => 10,
+        'type'              => 'string',
+        'validationMessage' => 'Markers on page value must be a number',
+        'validationPattern' => '^[0-9]+$',
+        'required'          => FALSE,
+      ],
       'postPage' => [
         'title'       => 'Blog post page',
         'description' => 'Page used to display blog posts',
@@ -56,6 +84,44 @@ class MarkersList extends ComponentBase
     return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
   }
   
+
+  /**
+   *
+   * Get marker page number from query
+   *
+   * @return bool
+   */
+  protected function setCurrentPage() {
+    if (isset($_GET['page'])) {
+      if (ctype_digit($_GET['page']) && ($_GET['page'] > 0)) {
+        $this->currentPage = $_GET['page'];
+      } else {
+        return FALSE;
+      }
+    } else {
+      $this->currentPage = 1;
+    }
+    return TRUE;
+  }
+
+
+  /**
+   * onRum implementation
+   * Setup pager
+   * Load markers
+   */
+  public function onRun() {
+    if (!$this->setCurrentPage()) {
+      return Redirect::to($this->currentPageUrl() . '?page=1');
+    }
+    $this->markers = $this->loadMarkers();
+    $this->lastPage = $this->markers->lastPage();
+    //if current page is greater than number of pages, redirect to the last page
+    if ($this->currentPage > $this->lastPage) {
+      return Redirect::to($this->currentPageUrl() . '?page=' . $this->lastPage);
+    }
+  }
+  
   
   /**
    * 
@@ -63,12 +129,12 @@ class MarkersList extends ComponentBase
    * 
    * @return Collection
    */
-  public function markers() {
+  public function loadMarkers() {
     $markers = Marker::orderBy('created_at', 'desc')
       ->with('image')
       ->with('posts')
       ->with('albums')
-      ->get();
+      ->paginate($this->property('markersOnPage'), $this->currentPage);
     
     return $this->prepareMarkers($markers);
   }
