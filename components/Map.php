@@ -50,10 +50,34 @@ class Map extends ComponentBase
         'default'     => '',
       ],
       'mapMarker' => [
-        'title'       => 'Map Marker',
-        'description' => 'Path to map marker image',
+        'title'       => 'Marker icon',
+        'description' => 'Path to custom marker icon',
         'default'     => '',
         'type'        => 'string'
+      ],
+      'thumbMode' => [
+        'title'       => 'Thumb mode',
+        'description' => 'Mode of thumb generation',
+        'type'        => 'dropdown',
+        'default'     => 'auto',
+      ],
+      'thumbWidth' => [
+        'title'             => 'Thumb width',
+        'description'       => 'Width of the thumb to be generated',
+        'default'           => 640,
+        'type'              => 'string',
+        'validationMessage' => 'Thumb width must be a number',
+        'validationPattern' => '^[0-9]+$',
+        'required'          => FALSE,
+      ],
+      'thumbHeight' => [
+        'title'             => 'Thumb height',
+        'description'       => 'Height of the thumb to be generated',
+        'default'           => 480,
+        'type'              => 'string',
+        'validationMessage' => 'Thumb height must be a number',
+        'validationPattern' => '^[0-9]+$',
+        'required'          => FALSE,
       ],
       'postPage' => [
         'title'       => 'Blog post page',
@@ -175,7 +199,11 @@ class Map extends ComponentBase
     $model = Marker::where('id', $id)->with('posts')->with('albums')->with('image')->first();
 
     if ($model->image) {
-      $model->image->thumb = $model->image->getThumb(120, 120, ['mode' => 'auto']);
+      $model->image->thumb = $model->image->getThumb(
+        $this->property('thumbWidth'),
+        $this->property('thumbHeight'),
+        ['mode' => $this->property('thumbMode')]
+      );
     }
 
     //setup urls for posts and albums

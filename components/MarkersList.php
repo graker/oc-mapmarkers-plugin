@@ -38,6 +38,30 @@ class MarkersList extends ComponentBase
   public function defineProperties()
   {
     return [
+      'thumbMode' => [
+        'title'       => 'Thumb mode',
+        'description' => 'Mode of thumb generation',
+        'type'        => 'dropdown',
+        'default'     => 'auto',
+      ],
+      'thumbWidth' => [
+        'title'             => 'Thumb width',
+        'description'       => 'Width of the thumb to be generated',
+        'default'           => 640,
+        'type'              => 'string',
+        'validationMessage' => 'Thumb width must be a number',
+        'validationPattern' => '^[0-9]+$',
+        'required'          => FALSE,
+      ],
+      'thumbHeight' => [
+        'title'             => 'Thumb height',
+        'description'       => 'Height of the thumb to be generated',
+        'default'           => 480,
+        'type'              => 'string',
+        'validationMessage' => 'Thumb height must be a number',
+        'validationPattern' => '^[0-9]+$',
+        'required'          => FALSE,
+      ],
       'markersOnPage' => [
         'title'             => 'Markers on page',
         'description'       => 'Amount of markers on one page (to use in pagination)',
@@ -82,6 +106,23 @@ class MarkersList extends ComponentBase
    */
   public function getPostPageOptions() {
     return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+  }
+
+
+  /**
+   *
+   * Returns thumb resize mode options for thumb mode select box setting
+   *
+   * @return array
+   */
+  public function getThumbModeOptions() {
+    return [
+      'auto' => 'Auto',
+      'exact' => 'Exact',
+      'portrait' => 'Portrait',
+      'landscape' => 'Landscape',
+      'crop' => 'Crop',
+    ];
   }
   
 
@@ -152,7 +193,11 @@ class MarkersList extends ComponentBase
   protected function prepareMarkers($markers) {
     foreach ($markers as $marker) {
       if ($marker->image) {
-        $marker->image->thumb = $marker->image->getThumb(120, 120, ['mode' => 'auto']);
+        $marker->image->thumb = $marker->image->getThumb(
+          $this->property('thumbWidth'),
+          $this->property('thumbHeight'),
+          ['mode' => $this->property('thumbMode')]
+        );
       }
 
       //setup urls for posts and albums
