@@ -34,5 +34,5 @@ For each marker you can display a title, image thumbnail, description and links 
 Current roadmap is to:
 
 * move map component styles to CSS assets
-* add pagination and thumb settings to the Markers List component 
+* add thumb settings to Map and Markers List components 
 * make more use of attached posts and albums
