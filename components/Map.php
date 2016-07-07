@@ -50,10 +50,29 @@ class Map extends ComponentBase
         'default'     => '',
       ],
       'mapMarker' => [
-        'title'       => 'Marker icon',
+        'title'       => 'Icon path',
         'description' => 'Path to custom marker icon',
         'default'     => '',
-        'type'        => 'string'
+        'type'        => 'string',
+        'group'       => 'Marker icon',
+      ],
+      'iconXOffset' => [
+        'title'             => 'X offset',
+        'description'       => 'X offset to anchor the icon',
+        'default'           => 0,
+        'type'              => 'string',
+        'validationMessage' => 'X offset must be a number',
+        'validationPattern' => '^[0-9]+$',
+        'group'             => 'Marker icon',
+      ],
+      'iconYOffset' => [
+        'title'             => 'Y offset',
+        'description'       => 'Y offset to anchor the icon',
+        'default'           => 0,
+        'type'              => 'string',
+        'validationMessage' => 'Y offset must be a number',
+        'validationPattern' => '^[0-9]+$',
+        'group'             => 'Marker icon',
       ],
       'thumbMode' => [
         'title'       => 'Thumb mode',
@@ -114,6 +133,23 @@ class Map extends ComponentBase
    */
   public function getPostPageOptions() {
     return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+  }
+
+
+  /**
+   *
+   * Returns thumb resize mode options for thumb mode select box setting
+   *
+   * @return array
+   */
+  public function getThumbModeOptions() {
+    return [
+      'auto' => 'Auto',
+      'exact' => 'Exact',
+      'portrait' => 'Portrait',
+      'landscape' => 'Landscape',
+      'crop' => 'Crop',
+    ];
   }
 
 
@@ -179,6 +215,8 @@ class Map extends ComponentBase
   protected function createSettingsArray() {
     $settings = array();
     $settings['image'] = $this->property('mapMarker');
+    $settings['x_offset'] = $this->property('iconXOffset');
+    $settings['y_offset'] = $this->property('iconYOffset');
     $settings['zoom'] = $this->property('zoom');
     $settings['center'] = [
       'lat' => $this->property('centerLat'),

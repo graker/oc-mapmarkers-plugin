@@ -32,6 +32,7 @@ For each marker you can display a title, image thumbnail, description and links 
 ## Roadmap
 
 Current roadmap is to:
-
-* move map component styles to CSS assets 
-* make more use of attached posts and albums
+ 
+* do some refactoring to similar component methods like loadMarkers
+* add sprites support for markers
+* move map component styles to CSS assets

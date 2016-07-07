@@ -31,10 +31,16 @@ function mapComponentAddMarkers(data) {
     zoom: parseInt(loadedData.settings.zoom)
   });
 
-  //init infobox
+  // init infobox
   mapComponentInfoBox = new google.maps.InfoWindow({
     content: ''
   });
+
+  // create marker icon
+  var Icon = {
+    url: loadedData.settings.image,
+    anchor: new google.maps.Point(parseInt(loadedData.settings.x_offset), parseInt(loadedData.settings.y_offset))
+  };
 
   for (var i=0; i < loadedData.markers.length; i++) {
     var marker = new google.maps.Marker({
@@ -44,7 +50,7 @@ function mapComponentAddMarkers(data) {
       },
       map: mapComponentMap,
       title: loadedData.markers[i].title,
-      icon: loadedData.settings.image
+      icon: Icon
     });
     marker.marker_id = loadedData.markers[i].id;
     //bind marker click to show info box
