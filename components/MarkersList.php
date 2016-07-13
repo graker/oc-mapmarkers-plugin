@@ -159,8 +159,9 @@ class MarkersList extends ComponentBase
 
     //check pagination
     $this->lastPage = $this->markers->lastPage();
-    //if current page is greater than number of pages, redirect to the last page
-    if ($this->currentPage > $this->lastPage) {
+    // if current page is greater than number of pages, redirect to the last page
+    // only if lastPage > 0 to avoid redirect loop when there are no elements
+    if ($this->lastPage && ($this->currentPage > $this->lastPage)) {
       return Redirect::to($this->currentPageUrl() . '?page=' . $this->lastPage);
     }
   }
