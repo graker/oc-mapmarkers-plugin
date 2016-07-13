@@ -44,7 +44,7 @@ class Markers extends Controller
    */
   public function create($context = '') {
     $this->addMapJS();
-    $this->addJs('/plugins/graker/mapmarkers/controllers/markers/checkboxlist-searchable.js');
+    $this->addJs('/plugins/graker/mapmarkers/assets/js/checkboxlist-searchable.js');
     return $this->asExtension('FormController')->create($context);
   }
 
@@ -60,7 +60,7 @@ class Markers extends Controller
    */
   public function update($recordId, $context = '') {
     $this->addMapJS();
-    $this->addJs('/plugins/graker/mapmarkers/controllers/markers/checkboxlist-searchable.js');
+    $this->addJs('/plugins/graker/mapmarkers/assets/js/checkboxlist-searchable.js');
     return $this->asExtension('FormController')->update($recordId, $context);
   }
 
@@ -70,7 +70,7 @@ class Markers extends Controller
    */
   protected function addMapJS() {
     //add local map init script and google map script
-    $this->addJs('/plugins/graker/mapmarkers/controllers/markers/markercoords.js');
+    $this->addJs('/plugins/graker/mapmarkers/assets/js/markercoords.js');
     $this->addJs(
       'https://maps.googleapis.com/maps/api/js?callback=markerCoordsMapInit',
       [

@@ -158,7 +158,7 @@ class Map extends ComponentBase
    */
   protected function addMapJS() {
     //add local map init script and google map script
-    $this->addJs('/plugins/graker/mapmarkers/components/map/mapmarkers_map.js');
+    $this->addJs('/plugins/graker/mapmarkers/assets/js/mapmarkers_map.js');
 
     //add google map js with or without api key
     $key = ($this->property('apiKey')) ? 'key=' . $this->property('apiKey') . '&' : '';
