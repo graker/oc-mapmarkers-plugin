@@ -49,6 +49,31 @@ class Plugin extends PluginBase
         'label' => 'Manage map markers',
         'tab' => 'Map Markers',
       ],
+      'graker.mapmarkers.access_settings' => [
+        'label' => 'Access Settings',
+        'tab' => 'Map Markers',
+      ],
+    ];
+  }
+  
+  
+  /**
+   *
+   * Registers plugin's settings
+   *
+   * @return array
+   */
+  public function registerSettings()
+  {
+    return [
+      'settings' => [
+        'label'       => 'MapMarkers',
+        'description' => 'Manage MapMarkers Settings.',
+        'icon'        => 'icon-map-marker',
+        'class'       => 'Graker\MapMarkers\Models\Settings',
+        'order'       => 100,
+        'permissions' => ['graker.mapmarkers.access_settings'],
+      ]
     ];
   }
 

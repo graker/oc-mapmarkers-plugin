@@ -2,6 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use Graker\MapMarkers\Models\Settings;
 use Graker\MapMarkers\Widgets\MarkersMap;
 use Graker\MapMarkers\Models\Marker;
 
@@ -71,8 +72,9 @@ class Markers extends Controller
   protected function addMapJS() {
     //add local map init script and google map script
     $this->addJs('/plugins/graker/mapmarkers/assets/js/markercoords.js');
+    $key = (Settings::get('api_key')) ? 'key=' . Settings::get('api_key') . '&' : '';
     $this->addJs(
-      'https://maps.googleapis.com/maps/api/js?callback=markerCoordsMapInit',
+      'https://maps.googleapis.com/maps/api/js?' . $key . 'callback=markerCoordsMapInit',
       [
         'async',
         'defer',

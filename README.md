@@ -7,6 +7,8 @@ At the moment, links to blog posts from [RainLab.Blog](https://octobercms.com/pl
 
 ## Usage
 
+Don't forget to set Google API key on the plugin's Settings page.
+
 ### Map component
 
 To use the plugin, install it as usual, go to graker/mapmarkers at Backend, create some markers and optionally link them to blog posts and photo albums.

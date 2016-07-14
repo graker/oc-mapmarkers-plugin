@@ -1,0 +1,9 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    api_key:
+      label: Google API key
+      comment: Insert Google API key here to use it with all maps rendered by this plugin

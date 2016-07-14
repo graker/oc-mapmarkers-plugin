@@ -3,6 +3,7 @@
 namespace Graker\MapMarkers\Widgets;
 
 use Backend\Classes\WidgetBase;
+use Graker\MapMarkers\Models\Settings;
 
 
 class MarkersMap extends WidgetBase {
@@ -44,8 +45,9 @@ class MarkersMap extends WidgetBase {
     $this->addJs('/plugins/graker/mapmarkers/widgets/markersmap/assets/js/markersmap.js');
 
     //Google Map
+    $key = (Settings::get('api_key')) ? 'key=' . Settings::get('api_key') . '&' : '';
     $this->addJs(
-      'https://maps.googleapis.com/maps/api/js?callback=markersMapInit',
+      'https://maps.googleapis.com/maps/api/js?' . $key . 'callback=markersMapInit',
       [
         'async',
         'defer',

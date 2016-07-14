@@ -5,6 +5,7 @@ use Cms\Classes\ComponentBase;
 use Graker\MapMarkers\Models\Marker;
 use Illuminate\Database\Eloquent\Collection;
 use Request;
+use Graker\MapMarkers\Models\Settings;
 
 class Map extends ComponentBase
 {
@@ -42,12 +43,6 @@ class Map extends ComponentBase
         'description' => 'Map zoom by default',
         'type'        => 'string',
         'default'     => 2,
-      ],
-      'apiKey' => [
-        'title'       => 'API key',
-        'description' => 'Google API key (optional)',
-        'type'        => 'string',
-        'default'     => '',
       ],
       'mapMarker' => [
         'title'       => 'Icon path',
@@ -161,7 +156,7 @@ class Map extends ComponentBase
     $this->addJs('/plugins/graker/mapmarkers/assets/js/mapmarkers_map.js');
 
     //add google map js with or without api key
-    $key = ($this->property('apiKey')) ? 'key=' . $this->property('apiKey') . '&' : '';
+    $key = (Settings::get('api_key')) ? 'key=' . Settings::get('api_key') . '&' : '';
     $this->addJs(
       'https://maps.googleapis.com/maps/api/js?' . $key . 'callback=mapComponentInit',
       [
