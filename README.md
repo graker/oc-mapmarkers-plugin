@@ -39,7 +39,7 @@ If there are more than one models attached (or none at all), `marker.singleUrl` 
 
 ### Thumbnail feature
 
-Markers displayed in both Map and Markers List components can have image thumbnails. You can set up thumbnail with, height and resizing mode in component's parameters. Thumbnail will be available in component partials (`marker.thumb` value).
+Markers displayed in both Map and Markers List components can have image thumbnails. You can set up thumbnail width, height and resizing mode in component's parameters. Thumbnail will be available in component partials (`marker.thumb` value).
 
 Marker's thumbnail is automatically generated from any image available in following priority:
 
