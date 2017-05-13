@@ -1,0 +1,17 @@
+div.mapcontainer {
+    width: auto;
+    height: 520px;
+    padding: 20px;
+}
+
+#mapcomponent,
+#marker-coords-map {
+    width: auto;
+    height: 100%;
+}
+
+div.mapcontainer-small {
+    width: auto;
+    height: 260px;
+    padding: 10px;
+}
