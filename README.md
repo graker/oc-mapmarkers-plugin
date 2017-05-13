@@ -3,7 +3,7 @@
 This OctoberCMS plugin allows user to set up and display multiple markers on Google Map.
 
 Aside coordinates, each marker can have a title, attached image and optional links to other content.
-At the moment, links to blog posts from [RainLab.Blog](https://octobercms.com/plugin/rainlab-blog) and albums from [Graker.PhotoAlbums](https://github.com/graker/photoalbums) are supported.
+At the moment, links to blog posts from [RainLab.Blog](https://octobercms.com/plugin/rainlab-blog) and albums from [Graker.PhotoAlbums](https://octobercms.com/plugin/graker-photoalbums) are supported.
 
 ## Usage
 
