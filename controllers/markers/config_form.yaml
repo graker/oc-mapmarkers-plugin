@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Marker
+name: graker.mapmarkers::lang.plugin.marker.name
 
 # Model Form Field configuration
 form: $/graker/mapmarkers/models/marker/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: graker/mapmarkers/markers
 
 # Create page
 create:
-    title: Create Marker
+    title: graker.mapmarkers::lang.plugin.create_marker
     redirect: graker/mapmarkers/markers/update/:id
     redirectClose: graker/mapmarkers/markers
 
 # Update page
 update:
-    title: Edit Marker
+    title: graker.mapmarkers::lang.plugin.edit_marker
     redirect: graker/mapmarkers/markers
     redirectClose: graker/mapmarkers/markers
 
 # Preview page
 preview:
-    title: Preview Marker
+    title: graker.mapmarkers::lang.plugin.preview_marker

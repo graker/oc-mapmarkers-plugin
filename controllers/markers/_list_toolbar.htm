@@ -2,9 +2,9 @@
     <a
         href="<?= Backend::url('graker/mapmarkers/markers/create') ?>"
         class="btn btn-primary oc-icon-plus">
-        New Marker
+        <?= e(trans('graker.mapmarkers::lang.plugin.new_marker')) ?>
     </a>
     <a href="<?= Backend::url('graker/mapmarkers/markers/reorder') ?>" class="btn btn-sm btn-secondary oc-icon-refresh">
-        <?= e(trans('Reorder markers')) ?>
+        <?= e(trans('graker.mapmarkers::lang.plugin.reorder_markers')) ?>
     </a>
 </div>
