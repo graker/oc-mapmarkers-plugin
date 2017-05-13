@@ -53,4 +53,3 @@ Current roadmap is to:
  
 * do some refactoring to similar component methods like loadMarkers
 * add sprites support for markers
-* move map component styles to CSS assets
