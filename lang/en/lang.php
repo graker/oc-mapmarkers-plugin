@@ -14,6 +14,8 @@ return [
     'markers' => 'Markers',
     'map_component_label' => 'Map',
     'map_component_description' => 'Google map with markers',
+    'markers_list_component_label' => 'Markers List',
+    'markers_list_component_description' => 'List of existing map markers',
     'center_latitude_label' => 'Center latitude',
     'center_latitude_description' => 'Latitude of map center (float)',
     'center_longitude_label' => 'Center longitude',
@@ -37,11 +39,14 @@ return [
     'blog_post_page_description' => 'Page used to display blog posts',
     'album_page_label' => 'Album page',
     'album_page_description' => 'Page used to display photo albums',
+    'markers_on_page_label' => 'Markers on page',
+    'markers_on_page_description' => 'Amount of markers on one page (to use in pagination)',
   ],
   'errors' => [
     'x_offset_number' => 'X offset must be a number',
     'y_offset_number' => 'Y offset must be a number',
     'thumb_width_number' => 'Thumb width must be a number',
     'thumb_height_number' => 'Thumb height must be a number',
+    'markers_on_page_number' => 'Markers on page value must be a number',
   ],
 ];

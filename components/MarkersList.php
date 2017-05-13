@@ -30,8 +30,8 @@ class MarkersList extends ComponentBase
     public function componentDetails()
     {
         return [
-          'name'        => 'Markers List',
-          'description' => 'List of existing map markers'
+          'name'        => 'graker.mapmarkers::lang.plugin.markers_list_component_label',
+          'description' => 'graker.mapmarkers::lang.plugin.markers_list_component_description'
         ];
     }
 
@@ -39,47 +39,47 @@ class MarkersList extends ComponentBase
     {
         return [
           'thumbMode' => [
-            'title'       => 'Thumb mode',
-            'description' => 'Mode of thumb generation',
+            'title'       => 'graker.mapmarkers::lang.plugin.thumb_mode_label',
+            'description' => 'graker.mapmarkers::lang.plugin.thumb_mode_description',
             'type'        => 'dropdown',
             'default'     => 'auto',
           ],
           'thumbWidth' => [
-            'title'             => 'Thumb width',
-            'description'       => 'Width of the thumb to be generated',
+            'title'             => 'graker.mapmarkers::lang.plugin.thumb_width_label',
+            'description'       => 'graker.mapmarkers::lang.plugin.thumb_width_description',
             'default'           => 640,
             'type'              => 'string',
-            'validationMessage' => 'Thumb width must be a number',
+            'validationMessage' => 'graker.mapmarkers::lang.errors.thumb_width_number',
             'validationPattern' => '^[0-9]+$',
             'required'          => FALSE,
           ],
           'thumbHeight' => [
-            'title'             => 'Thumb height',
-            'description'       => 'Height of the thumb to be generated',
+            'title'             => 'graker.mapmarkers::lang.plugin.thumb_height_label',
+            'description'       => 'graker.mapmarkers::lang.plugin.thumb_height_description',
             'default'           => 480,
             'type'              => 'string',
-            'validationMessage' => 'Thumb height must be a number',
+            'validationMessage' => 'graker.mapmarkers::lang.errors.thumb_height_number',
             'validationPattern' => '^[0-9]+$',
             'required'          => FALSE,
           ],
           'markersOnPage' => [
-            'title'             => 'Markers on page',
-            'description'       => 'Amount of markers on one page (to use in pagination)',
+            'title'             => 'graker.mapmarkers::lang.plugin.markers_on_page_label',
+            'description'       => 'graker.mapmarkers::lang.plugin.markers_on_page_description',
             'default'           => 10,
             'type'              => 'string',
-            'validationMessage' => 'Markers on page value must be a number',
+            'validationMessage' => 'graker.mapmarkers::lang.errors.markers_on_page_number',
             'validationPattern' => '^[0-9]+$',
             'required'          => FALSE,
           ],
           'postPage' => [
-            'title'       => 'Blog post page',
-            'description' => 'Page used to display blog posts',
+            'title'       => 'graker.mapmarkers::lang.plugin.blog_post_page_label',
+            'description' => 'graker.mapmarkers::lang.plugin.blog_post_page_description',
             'type'        => 'dropdown',
             'default'     => 'blog/post',
           ],
           'albumPage' => [
-            'title'       => 'Album page',
-            'description' => 'Page used to display photo albums',
+            'title'       => 'graker.mapmarkers::lang.plugin.album_page_label',
+            'description' => 'graker.mapmarkers::lang.plugin.album_page_description',
             'type'        => 'dropdown',
             'default'     => 'photoalbums/album',
           ],
