@@ -17,8 +17,8 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-          'name'        => 'MapMarkers',
-          'description' => 'Google map with multiple markers',
+          'name'        => 'graker.mapmarkers::lang.plugin.name',
+          'description' => 'graker.mapmarkers::lang.plugin.description',
           'author'      => 'Graker',
           'icon'        => 'icon-map-marker',
           'homepage'    => 'https://github.com/graker/mapmarkers',
@@ -46,12 +46,12 @@ class Plugin extends PluginBase
     {
         return [
           'graker.mapmarkers.manage_markers' => [
-            'label' => 'Manage map markers',
-            'tab' => 'Map Markers',
+            'label' => 'graker.mapmarkers::lang.plugin.manage_permission',
+            'tab' => 'graker.mapmarkers::lang.plugin.name',
           ],
           'graker.mapmarkers.access_settings' => [
-            'label' => 'Access Settings',
-            'tab' => 'Map Markers',
+            'label' => 'graker.mapmarkers::lang.plugin.access_permission',
+            'tab' => 'graker.mapmarkers::lang.plugin.name',
           ],
         ];
     }
@@ -67,8 +67,8 @@ class Plugin extends PluginBase
     {
         return [
           'settings' => [
-            'label'       => 'MapMarkers',
-            'description' => 'Manage MapMarkers Settings.',
+            'label'       => 'graker.mapmarkers::lang.plugin.name',
+            'description' => 'graker.mapmarkers::lang.plugin.settings_description',
             'icon'        => 'icon-map-marker',
             'class'       => 'Graker\MapMarkers\Models\Settings',
             'order'       => 100,
@@ -86,7 +86,7 @@ class Plugin extends PluginBase
     {
         return [
           'mapmarkers' => [
-            'label' => 'Map Markers',
+            'label' => 'graker.mapmarkers::lang.plugin.name',
             'url' => Backend::url('graker/mapmarkers/markers'),
             'icon'        => 'icon-map-marker',
             'permissions' => ['graker.mapmarkers.manage_markers'],
@@ -94,13 +94,13 @@ class Plugin extends PluginBase
 
             'sideMenu' => [
               'new_marker' => [
-                'label'       => 'New marker',
+                'label'       => 'graker.mapmarkers::lang.plugin.new_marker',
                 'icon'        => 'icon-plus',
                 'url'         => Backend::url('graker/mapmarkers/markers/create'),
                 'permissions' => ['graker.mapmarkers.manage_markers'],
               ],
               'markers' => [
-                'label'       => 'Markers',
+                'label'       => 'graker.mapmarkers::lang.plugin.markers',
                 'icon'        => 'icon-copy',
                 'url'         => Backend::url('graker/mapmarkers/markers'),
                 'permissions' => ['graker.mapmarkers.manage_markers'],
