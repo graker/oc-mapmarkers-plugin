@@ -95,8 +95,8 @@ class Marker extends Model
     // check albums
     if ($this->albums) {
       foreach ($this->albums as $album) {
-        if ($album->latestPhoto && ($photo = $album->latestPhoto->image)) {
-          return $photo->getThumb(
+        if ($image = $album->getImage()) {
+          return $image->getThumb(
             $options['width'],
             $options['height'],
             ['mode' => $options['mode']]
