@@ -3,6 +3,9 @@
 # ===================================
 
 columns:
+    sort_order:
+        label: Order
+
     title:
         label: Title
         searchable: true

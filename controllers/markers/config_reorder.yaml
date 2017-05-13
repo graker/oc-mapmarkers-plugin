@@ -1,0 +1,17 @@
+# ===================================
+#  Reorder Behavior Config
+# ===================================
+
+# Reorder Title
+title: Reorder Map Markers
+
+# Attribute name
+nameFrom: title
+
+# Model Class name
+modelClass: Graker\MapMarkers\Models\Marker
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+    buttons: reorder_toolbar

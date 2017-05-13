@@ -174,7 +174,7 @@ class MarkersList extends ComponentBase
      * @return Collection
      */
     public function loadMarkers() {
-        $markers = Marker::orderBy('created_at', 'desc')
+        $markers = Marker::orderBy('sort_order', 'asc')
           ->with('image')
           ->with('posts')
           ->with(['albums' => function ($query) {
