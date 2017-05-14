@@ -5,5 +5,5 @@
 fields:
 
     api_key:
-      label: Google API key
-      comment: Insert Google API key here to use it with all maps rendered by this plugin
+      label: graker.mapmarkers::lang.plugin.api_key_label
+      comment: graker.mapmarkers::lang.plugin.api_key_description

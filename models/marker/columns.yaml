@@ -4,16 +4,16 @@
 
 columns:
     sort_order:
-        label: Order
+        label: graker.mapmarkers::lang.plugin.order_label
 
     title:
-        label: Title
+        label: graker.mapmarkers::lang.plugin.title_label
         searchable: true
 
     created_at:
-        label: Created
+        label: graker.mapmarkers::lang.plugin.created_label
         type: date
 
     updated_at:
-        label: Updated
+        label: graker.mapmarkers::lang.plugin.updated_label
         type: date

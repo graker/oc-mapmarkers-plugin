@@ -4,19 +4,19 @@
 
 fields:
     title:
-        label: Title
+        label: graker.mapmarkers::lang.plugin.title_label
         span: full
-        placeholder: Marker title
+        placeholder: graker.mapmarkers::lang.plugin.title_description
         required: true
 
     description:
-            label: Description
-            type: richeditor
-            size: large
-            span: right
+        label: graker.mapmarkers::lang.plugin.description_label
+        type: richeditor
+        size: large
+        span: right
 
     image:
-        label: Photo
+        label: graker.mapmarkers::lang.plugin.image_label
         type: fileupload
         mode: image
         imageWidth: 320
@@ -24,9 +24,9 @@ fields:
         span: left
 
     coordinates_section:
-        label: Coordinates
+        label: graker.mapmarkers::lang.plugin.coordinates_label
         type: section
-        comment: Set up marker coordinates. Doubleclick on the map to set up or change marker's location.
+        comment: graker.mapmarkers::lang.plugin.coordinates_description
 
     coordinates:
         type: partial
@@ -34,30 +34,30 @@ fields:
         span: right
 
     latitude:
-        label: Latitude
+        label: graker.mapmarkers::lang.plugin.latitude_label
         type: number
         span: left
         required: true
 
     longitude:
-        label: Longitude
+        label: graker.mapmarkers::lang.plugin.longitude_label
         type: number
         span: left
         required: true
 
     relations_section:
-            label: Attached content
-            type: section
-            comment: Select content to attach to this marker
+        label: graker.mapmarkers::lang.plugin.relations_section_label
+        type: section
+        comment: graker.mapmarkers::lang.plugin.latitude_description
 
     posts:
-        label: Blog posts
+        label: graker.mapmarkers::lang.plugin.posts_label
         type: relation
         nameFrom: title
         span: left
 
     albums:
-        label: Photo albums
+        label: graker.mapmarkers::lang.plugin.albums_label
         type: relation
         nameFrom: title
         span: right

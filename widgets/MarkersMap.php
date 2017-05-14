@@ -19,8 +19,8 @@ class MarkersMap extends WidgetBase {
      */
     public function widgetDetails() {
         return [
-          'name' => 'Markers Map',
-          'description' => 'Widget to display map with all markers on it in the Backend',
+          'name' => 'graker.mapmarkers::lang.plugin.map_widget_name',
+          'description' => 'graker.mapmarkers::lang.plugin.map_widget_description',
         ];
     }
 
