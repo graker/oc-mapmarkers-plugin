@@ -48,7 +48,7 @@ fields:
     relations_section:
         label: graker.mapmarkers::lang.plugin.relations_section_label
         type: section
-        comment: graker.mapmarkers::lang.plugin.latitude_description
+        comment: graker.mapmarkers::lang.plugin.relations_section_description
 
     posts:
         label: graker.mapmarkers::lang.plugin.posts_label
