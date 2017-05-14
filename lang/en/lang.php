@@ -56,4 +56,10 @@ return [
     'thumb_height_number' => 'Thumb height must be a number',
     'markers_on_page_number' => 'Markers on page value must be a number',
   ],
+  'messages' => [
+    'creating_marker' => 'Creating Marker...',
+    'saving_marker' => 'Saving Marker...',
+    'deleting_marker' => 'Deleting Marker...',
+    'deleting_marker_confirm' => 'Do you really want to delete this marker?',
+  ],
 ];

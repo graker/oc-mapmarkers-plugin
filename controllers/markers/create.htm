@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('graker/mapmarkers/markers') ?>">Markers</a></li>
+        <li><a href="<?= Backend::url('graker/mapmarkers/markers') ?>"><?= e(trans('graker.mapmarkers::lang.plugin.markers')) ?></a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -19,21 +19,21 @@
                     type="submit"
                     data-request="onSave"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Creating Marker..."
+                    data-load-indicator="<?= e(trans('graker.mapmarkers::lang.messages.creating_marker')) ?>"
                     class="btn btn-primary">
-                    Create
+                    <?= e(trans('backend::lang.form.create')) ?>
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Creating Marker..."
+                    data-load-indicator="<?= e(trans('graker.mapmarkers::lang.messages.creating_marker')) ?>"
                     class="btn btn-default">
-                    Create and Close
+                    <?= e(trans('backend::lang.form.create_and_close')) ?>
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('graker/mapmarkers/markers') ?>">Cancel</a>
+                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('graker/mapmarkers/markers') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
                 </span>
             </div>
         </div>
@@ -43,6 +43,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('graker/mapmarkers/markers') ?>" class="btn btn-default">Return to markers list</a></p>
+    <p><a href="<?= Backend::url('graker/mapmarkers/markers') ?>" class="btn btn-default"><?= e(trans('graker.mapmarkers::lang.messages.return_to_markers_list')) ?></a></p>
 
 <?php endif ?>

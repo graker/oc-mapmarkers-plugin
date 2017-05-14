@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: graker.mapmarkers::lang.plugin.marker.name
+name: graker.mapmarkers::lang.plugin.marker_name
 
 # Model Form Field configuration
 form: $/graker/mapmarkers/models/marker/fields.yaml
