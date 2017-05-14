@@ -30,6 +30,7 @@ It is used to render popups when markers on the map are being clicked. Override 
 
 This component can be used to display markers as plain content (like posts), for example, under the map. 
 For each marker you can display a title, image thumbnail, description and links to attached blog posts and photo albums. 
+You can change markers display order by clicking on Reorder markers button on Markers backend page. 
 
 ### Single Url feature
 
