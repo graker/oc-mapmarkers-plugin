@@ -1,10 +1,12 @@
 <?php namespace Graker\MapMarkers\Controllers;
 
+use Backend\Widgets\Form;
 use BackendMenu;
 use Backend\Classes\Controller;
 use Graker\MapMarkers\Models\Settings;
 use Graker\MapMarkers\Widgets\MarkersMap;
 use Graker\MapMarkers\Models\Marker;
+use System\Classes\PluginManager;
 
 /**
  * Markers Back-end Controller
@@ -64,6 +66,54 @@ class Markers extends Controller
     public function update($recordId, $context = '') {
         $this->addMapAssets();
         return $this->asExtension('FormController')->update($recordId, $context);
+    }
+
+
+    /**
+     *
+     * Remove Blog and Album relation widgets if corresponding plugins are not enabled
+     *
+     * @param Form $form
+     */
+    public function formExtendFields($form) {
+        $plugin_manager = PluginManager::instance();
+        $blog_plugin_available = $plugin_manager->hasPlugin('RainLab.Blog') && !$plugin_manager->isDisabled('RainLab.Blog');
+        $photoalbums_plugin_available = $plugin_manager->hasPlugin('Graker.PhotoAlbums') && !$plugin_manager->isDisabled('Graker.PhotoAlbums');
+
+        // enable relations section
+        if ($blog_plugin_available || $photoalbums_plugin_available) {
+            $form->addFields([
+              'relations_section' => [
+                'label' => 'graker.mapmarkers::lang.plugin.relations_section_label',
+                'type' => 'section',
+                'comment' => 'graker.mapmarkers::lang.plugin.relations_section_description',
+              ],
+            ]);
+        }
+
+        // enable blog relations
+        if ($blog_plugin_available) {
+            $form->addFields([
+              'posts' => [
+                'label' => 'graker.mapmarkers::lang.plugin.posts_label',
+                'type' => 'relation',
+                'nameFrom' => 'title',
+                'span' => 'left',
+              ],
+            ]);
+        }
+
+        // enable album relations
+        if ($photoalbums_plugin_available) {
+            $form->addFields([
+              'albums' => [
+                'label' => 'graker.mapmarkers::lang.plugin.albums_label',
+                'type' => 'relation',
+                'nameFrom' => 'title',
+                'span' => 'right',
+              ]
+            ]);
+        }
     }
 
 
