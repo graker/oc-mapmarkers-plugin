@@ -10,3 +10,6 @@
     - Post and album relations are now optional in Marker forms
 1.1.2:
     - Occurences of posts and albums are made conditional too
+1.1.3:
+    - Fix in thumbs generation
+

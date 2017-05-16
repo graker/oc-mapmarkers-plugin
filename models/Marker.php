@@ -1,6 +1,7 @@
 <?php namespace Graker\MapMarkers\Models;
 
 use Model;
+use Graker\MapMarkers\Classes\ExternalRelations;
 
 /**
  * Marker Model
@@ -70,7 +71,7 @@ class Marker extends Model
         }
 
         // check posts
-        if ($this->posts) {
+        if (ExternalRelations::isPluginAvailable('RainLab.Blog') && $this->posts) {
             foreach ($this->posts as $post) {
                 if ($featured_image = $post->featured_images->first()) {
                     return $featured_image->getThumb(
@@ -83,7 +84,7 @@ class Marker extends Model
         }
 
         // check albums
-        if ($this->albums) {
+        if (ExternalRelations::isPluginAvailable('Graker.PhotoAlbums') && $this->albums) {
             foreach ($this->albums as $album) {
                 if ($image = $album->getImage()) {
                     return $image->getThumb(
