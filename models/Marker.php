@@ -43,17 +43,6 @@ class Marker extends Model
       'user' => ['Backend\Models\User'],
     ];
 
-    public $belongsToMany = [
-      'posts' => [
-        'RainLab\Blog\Models\Post',
-        'table' => 'graker_mapmarkers_post_markers',
-      ],
-      'albums' => [
-        'Graker\PhotoAlbums\Models\Album',
-        'table' => 'graker_mapmarkers_album_markers',
-      ],
-    ];
-
 
     public $attachOne = [
       'image' => ['System\Models\File'],

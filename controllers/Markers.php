@@ -6,7 +6,7 @@ use Backend\Classes\Controller;
 use Graker\MapMarkers\Models\Settings;
 use Graker\MapMarkers\Widgets\MarkersMap;
 use Graker\MapMarkers\Models\Marker;
-use System\Classes\PluginManager;
+use Graker\MapMarkers\Classes\ExternalRelations;
 
 /**
  * Markers Back-end Controller
@@ -76,12 +76,8 @@ class Markers extends Controller
      * @param Form $form
      */
     public function formExtendFields($form) {
-        $plugin_manager = PluginManager::instance();
-        $blog_plugin_available = $plugin_manager->hasPlugin('RainLab.Blog') && !$plugin_manager->isDisabled('RainLab.Blog');
-        $photoalbums_plugin_available = $plugin_manager->hasPlugin('Graker.PhotoAlbums') && !$plugin_manager->isDisabled('Graker.PhotoAlbums');
-
         // enable relations section
-        if ($blog_plugin_available || $photoalbums_plugin_available) {
+        if (ExternalRelations::isPluginAvailable('RainLab.Blog') || ExternalRelations::isPluginAvailable('Graker.PhotoAlbums')) {
             $form->addFields([
               'relations_section' => [
                 'label' => 'graker.mapmarkers::lang.plugin.relations_section_label',
@@ -92,7 +88,7 @@ class Markers extends Controller
         }
 
         // enable blog relations
-        if ($blog_plugin_available) {
+        if (ExternalRelations::isPluginAvailable('RainLab.Blog')) {
             $form->addFields([
               'posts' => [
                 'label' => 'graker.mapmarkers::lang.plugin.posts_label',
@@ -104,7 +100,7 @@ class Markers extends Controller
         }
 
         // enable album relations
-        if ($photoalbums_plugin_available) {
+        if (ExternalRelations::isPluginAvailable('Graker.PhotoAlbums')) {
             $form->addFields([
               'albums' => [
                 'label' => 'graker.mapmarkers::lang.plugin.albums_label',

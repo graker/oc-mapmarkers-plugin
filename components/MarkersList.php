@@ -5,6 +5,7 @@ use Cms\Classes\Page;
 use Graker\MapMarkers\Models\Marker;
 use Illuminate\Database\Eloquent\Collection;
 use Redirect;
+use Graker\MapMarkers\Classes\ExternalRelations;
 
 class MarkersList extends ComponentBase
 {
@@ -174,14 +175,19 @@ class MarkersList extends ComponentBase
      * @return Collection
      */
     public function loadMarkers() {
-        $markers = Marker::orderBy('sort_order', 'asc')
-          ->with('image')
-          ->with('posts')
-          ->with(['albums' => function ($query) {
-              $query->with('latestPhoto');
-          }])
-          ->paginate($this->property('markersOnPage'), $this->currentPage);
+        $query = Marker::orderBy('sort_order', 'asc')->with('image');
 
+        if (ExternalRelations::isPluginAvailable('RainLab.Blog')) {
+            $query->with('posts');
+        }
+
+        if (ExternalRelations::isPluginAvailable('Graker.PhotoAlbums')) {
+            $query->with(['albums' => function ($query) {
+                $query->with('latestPhoto');
+            }]);
+        }
+
+        $markers = $query->paginate($this->property('markersOnPage'), $this->currentPage);
         return $this->prepareMarkers($markers);
     }
 

@@ -2,6 +2,8 @@
 
 use Backend;
 use System\Classes\PluginBase;
+use Graker\MapMarkers\Models\Marker;
+use Graker\MapMarkers\Classes\ExternalRelations;
 
 /**
  * MapMarkers Plugin Information File
@@ -108,6 +110,31 @@ class Plugin extends PluginBase
             ],
           ],
         ];
+    }
+
+
+    /**
+     * Overriding boot() method
+     * Here we register relations to Blog posts and Photo albums if there are corresponding plugins enabled
+     */
+    public function boot() {
+        if (ExternalRelations::isPluginAvailable('RainLab.Blog')) {
+            Marker::extend(function (Marker $model) {
+                $model->belongsToMany['posts'] = [
+                  'RainLab\Blog\Models\Post',
+                  'table' => 'graker_mapmarkers_post_markers',
+                ];
+            });
+        }
+
+        if (ExternalRelations::isPluginAvailable('Graker.PhotoAlbums')) {
+            Marker::extend(function (Marker $model) {
+                $model->belongsToMany['albums'] = [
+                  'Graker\PhotoAlbums\Models\Album',
+                  'table' => 'graker_mapmarkers_album_markers',
+                ];
+            });
+        }
     }
 
 }

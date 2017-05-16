@@ -6,6 +6,7 @@ use Graker\MapMarkers\Models\Marker;
 use Illuminate\Database\Eloquent\Collection;
 use Request;
 use Graker\MapMarkers\Models\Settings;
+use Graker\MapMarkers\Classes\ExternalRelations;
 
 class Map extends ComponentBase
 {
@@ -232,13 +233,19 @@ class Map extends ComponentBase
      */
     public function onMarkerClicked() {
         $id = Request::input('marker_id');
-        $model = Marker::where('id', $id)
-          ->with('posts')
-          ->with(['albums' => function ($query) {
-              $query->with('latestPhoto');
-          }])
-          ->with('image')
-          ->first();
+        $query = Marker::where('id', $id);
+
+        if (ExternalRelations::isPluginAvailable('RainLab.Blog')) {
+            $query->with('posts');
+        }
+
+        if (ExternalRelations::isPluginAvailable('Graker.PhotoAlbums')) {
+            $query->with(['albums' => function ($query) {
+                $query->with('latestPhoto');
+            }]);
+        }
+
+        $model = $query->with('image')->first();
 
         $model->thumb = $model->getMarkerThumb([
           'width' => $this->property('thumbWidth'),
