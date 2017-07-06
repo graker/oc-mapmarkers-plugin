@@ -37,10 +37,14 @@ function mapComponentAddMarkers(data) {
   });
 
   // create marker icon
-  var Icon = {
-    url: loadedData.settings.image,
-    anchor: new google.maps.Point(parseInt(loadedData.settings.x_offset), parseInt(loadedData.settings.y_offset))
-  };
+  var iconUrl = loadedData.settings.image;
+  var Icon = null;
+  if (iconUrl) {
+    Icon = {
+      url: iconUrl,
+      anchor: new google.maps.Point(parseInt(loadedData.settings.x_offset), parseInt(loadedData.settings.y_offset))
+    };
+  }
 
   for (var i=0; i < loadedData.markers.length; i++) {
     var marker = new google.maps.Marker({

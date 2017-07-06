@@ -12,4 +12,5 @@
     - Occurences of posts and albums are made conditional too
 1.1.3:
     - Fix in thumbs generation
-
+1.1.4:
+    - Fix for default marker icon in the front-end
