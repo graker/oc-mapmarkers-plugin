@@ -14,3 +14,5 @@
     - Fix in thumbs generation
 1.1.4:
     - Fix for default marker icon in the front-end
+1.1.5:
+    - Fix for broken markers new/edit element in backend in chromium

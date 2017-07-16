@@ -125,7 +125,6 @@ class Markers extends Controller
         $this->addJs(
           'https://maps.googleapis.com/maps/api/js?' . $key . 'callback=markerCoordsMapInit',
           [
-            'async',
             'defer',
           ]
         );
