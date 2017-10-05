@@ -16,6 +16,7 @@ class Marker extends Model
      * @var string The database table used by the model.
      */
     public $table = 'graker_mapmarkers_markers';
+    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
 
     /**
      * @var array Validation rules
@@ -24,6 +25,11 @@ class Marker extends Model
       'title' => 'required',
       'latitude' => 'required',
       'longitude' => 'required',
+    ];
+    
+    public $translatable = [
+        'title',
+        'description'
     ];
 
     /**
