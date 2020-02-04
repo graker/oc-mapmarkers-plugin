@@ -1,10 +1,14 @@
 <?php namespace Graker\MapMarkers\Models;
 
+use Illuminate\Support\Collection;
 use Model;
 use Graker\MapMarkers\Classes\ExternalRelations;
 
 /**
  * Marker Model
+ *
+ * @property Collection posts
+ * @property Collection albums
  */
 class Marker extends Model
 {

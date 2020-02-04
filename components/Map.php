@@ -282,8 +282,8 @@ class Map extends ComponentBase
     protected function getSingleUrl(Marker $marker) {
         $url = '';
 
-        $posts_count = count($marker->posts);
-        $markers_count = count($marker->albums);
+        $posts_count = optional($marker->posts)->count();
+        $markers_count = optional($marker->albums)->count();
         if (($posts_count + $markers_count) == 1) {
             if ($posts_count) {
                 $url = $marker->posts->first()->url;
