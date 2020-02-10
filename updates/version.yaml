@@ -18,3 +18,5 @@
     - Fix for broken markers new/edit element in backend in chromium
 1.1.6:
     - RainLab.Translate support added, thanks to amdad
+1.1.7:
+    - Fix issue with marker display without blog and album plugins on PHP 7.2+
